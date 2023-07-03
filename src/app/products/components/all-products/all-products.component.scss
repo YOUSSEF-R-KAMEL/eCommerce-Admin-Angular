@@ -1,0 +1,14 @@
+table {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.myCartsContainer div:nth-of-type(even) .card div {
+  background-color: #007588;
+  z-index: 99;
+}
+
+
+form label {
+  margin-bottom: 10px;
+}

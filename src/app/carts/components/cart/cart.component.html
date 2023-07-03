@@ -1,0 +1,87 @@
+<div class="cardbox">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-3">
+        <label for="startdate">Start Date</label>
+        <input type="date" class="form-control" formControlName="startdate" id="startdate">
+      </div>
+      <div class="col-3">
+        <label for="enddate">End Date</label>
+        <input type="date" class="form-control" formControlName="enddate" id="enddate">
+      </div>
+      <div class="col-2 d-flex align-items-end">
+        <button class="btn btn-success" (click)="applyFilter()">Apply</button>
+      </div>
+    </div>
+  </form>
+  <table class="table table-striped mt-5">
+    <thead>
+      <tr>
+        <th></th>
+        <th>Date</th>
+        <th>Quantity</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let prd of carts, let i = index">
+        <td></td>
+        <td>{{ prd.date | date }}</td>
+        <td>{{ prd.products.length }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="deleteCart(prd.id)">Delete</button>
+          <button type="button" class="btn btn-primary ms-3" data-bs-toggle="modal" data-bs-target="#exampleModal" (click)="view(i)">
+            View
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade w-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 900px;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-striped mt-5">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let prd of products, let i = index">
+              <td><img src="{{ prd.item.image}}" alt="" class="w-25"></td>
+              <td>{{ prd.item.title }}</td>
+              <td>{{ prd.item.price }}</td>
+              <td>{{ prd.quantity }}</td>
+              <td>{{ prd.item.price * prd.quantity }}</td>
+            </tr>
+          </tbody>
+          <!-- <tfoot style="border-top: 1px solid #DDD;">
+            <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th></th>
+              <th>Total : {{total}} LE.</th>
+            </tr>
+          </tfoot> -->
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+
